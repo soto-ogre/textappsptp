@@ -25,6 +25,7 @@ module Textapp
     config.assets.initialize_on_precompile = false
     config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
     
+    
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

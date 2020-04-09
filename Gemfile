@@ -79,5 +79,3 @@ gem 'rouge'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on', branch: 'master'
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 gem "dropzonejs-rails"
-gem "carrierwave"
-gem 'mini_magick'
