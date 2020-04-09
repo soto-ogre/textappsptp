@@ -1,0 +1,30 @@
+.ui.grid
+  .eight.wide.column
+    =  form_for [@category, @memo] do |f|
+      - if @memo.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@memo.errors.count, "error")} prohibited this memo from being saved:"
+          %ul
+            - @memo.errors.full_messages.each do |message|
+              %li= message
+
+      .field__title
+        = f.text_field :title,placeholder: "title"
+      .field__category.select-wrap
+        = f.collection_select :category_id, @categories, :id, :name
+      .field__content
+        = f.text_area :content
+      .field
+        = f.label :label_list, 'タグをカンマ区切りで入力' 
+        = text_field_tag 'memo[label_list]', @memo.label_list.join(',')
+      -# .field
+      -#   = f.label :tag_list
+      -#   = f.text_field :tag_list, value: @task.tag_list.join(','), class: "form-control"
+      .actions
+        = f.submit 'Save',class:"ui toggle button huge basic fluid"
+  .eight.wide.column.markdown-preview.ui.message
+    .ui.top.left.attached.label
+      %i.fab.fa-markdown
+      markdown preview
+    %p#marked-area
+

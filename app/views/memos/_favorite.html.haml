@@ -1,0 +1,7 @@
+%span{id: "favorite-#{memo.id}"}
+  - if !Favorite.exists?(user_id:current_user.id,memo_id:@memo.id)
+    = link_to memo_add_path(@memo.id) ,method: :post, remote: true do
+      %i.far.fa-star.fa-2x
+  -else
+    = link_to memo_add_path(@memo.id) ,method: :delete, remote: true do
+      %i.fas.fa-star.fa-2x

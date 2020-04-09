@@ -1,0 +1,36 @@
+
+.memo__menu
+  .ui.vertical.icon.menu
+    %span.item
+      = favorite_mark.html_safe
+    %span.item
+      = render 'favorite', memo: @memo
+    = link_to edit_memo_path(@memo),class:"item" do
+      %i.fas.fa-pen-nib.fa-2x
+    = link_to @memo, method: :delete,class:"item", data: { confirm: 'Are you sure?' } do
+      %i.far.fa-trash-alt.fa-2x
+    
+-if notice
+  #notice
+    .ui.success.message
+      .header
+        = notice
+
+.memo__content
+ 
+  -if @memo.category.id == 1
+    %h1.ui.header.dividing
+      = @memo.title
+      
+  = @content
+  .memo__footer
+    = @memo.created_at.to_s
+    .label
+      -if @memo.label_list.length > 0
+        - @memo.label_list.each do |tag| 
+          = link_to tag, tags_path(tag_name: tag),class:"ui label blue"
+
+
+
+
+

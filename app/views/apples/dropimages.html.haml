@@ -1,0 +1,262 @@
+-# #dropzone{:effectallowed => "move"} Drog files here!
+-# %ul#files
+
+-# :css
+-#   #dropzone {
+-#   background-color: #cfc;
+-#   border: solid 3px #9c9;
+-#   color: #9c9;
+-#   min-height: 50px;
+-#   padding: 20px;
+-#   text-shadow: 1px 1px 0 #fff;
+-#   }
+-#   #dropzone.dropover {
+-#     background-color: #cff;
+-#     color: #9cc;
+-#   }
+
+-#   #files:empty::before {
+-#     color: #ccc;
+-#     content: "(Files data will be shown here.)";
+-#   }
+-#   #files img {
+-#     border: solid 1px #ccc;
+-#     cursor: pointer;
+-#     height: auto;
+-#     margin: 0 10px;
+-#     max-height: 128px;
+-#     max-width: 128px;
+-#     width: auto;
+-#   }
+
+-# :javascript
+-#     var URL_BLANK_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+-#   var elDrop = document.getElementById('dropzone');
+-#   var elFiles = document.getElementById('files');
+
+-#   elDrop.addEventListener('dragover', function(event) {
+-#           event.preventDefault();
+-#           event.dataTransfer.dropEffect = 'copy';
+-#           showDropping();
+-#   });
+
+-#   elDrop.addEventListener('dragleave', function(event) {
+-#           hideDropping();
+-#   });
+
+-#   elDrop.addEventListener('drop', function(event) {
+-#           event.preventDefault();
+-#           hideDropping();
+
+-#           var files = event.dataTransfer.files;
+-#           showFiles(files);
+-#   });
+
+
+
+-#   document.addEventListener('click', function(event) {
+-#       var elTarget = event.target;
+-#       if (elTarget.tagName === 'IMG') {
+-#           var src = elTarget.src;
+-#           var w = window.open('about:blank');
+-#           var d = w.document;
+-#           var title = escapeHtml(elTarget.getAttribute('title'));
+
+-#           d.open();
+-#           d.write('<title>' + title + '</title>');
+-#           d.write('<img src="' + src + '" />');
+-#           d.close();
+-#       }
+-#   });
+
+-#   function showDropping() {
+-#           elDrop.classList.add('dropover');
+-#   }
+
+-#   function hideDropping() {
+-#           elDrop.classList.remove('dropover');
+-#   }
+
+-#   function showFiles(files) {
+-#           elFiles.innerHTML = '';
+
+-#           for (var i=0, l=files.length; i<l; i++) {
+-#                   var file = files[i];
+-#                   var elFile = buildElFile(file);
+-#                   elFiles.appendChild(elFile);
+-#           }
+-#   }
+
+-#   function buildElFile(file) {
+-#           var elFile = document.createElement('li');
+
+-#           var text = file.name + ' (' + file.type + ',' + file.size + 'bytes)';
+-#           elFile.appendChild(document.createTextNode(text));
+
+-#           if (file.type.indexOf('image/') === 0) {
+-#               var elImage = document.createElement('img');
+-#               elImage.src = URL_BLANK_IMAGE;
+-#               elFile.appendChild(elImage);
+
+-#               attachImage(file, elImage);
+-#           }
+
+-#           return elFile;
+-#   }
+
+-#   function attachImage(file, elImage) {
+-#       var reader = new FileReader();
+-#       reader.onload = function(event) {
+-#           var src = event.target.result;
+-#           elImage.src = src;
+-#           elImage.setAttribute('title', file.name);
+-#       };
+-#       reader.readAsDataURL(file);
+-#   }
+
+-#   function escapeHtml(source) {
+-#       var el = document.createElement('div');
+-#       el.appendChild(document.createTextNode(source));
+-#       var destination = el.innerHTML;
+-#       return destination;
+-#   }
+
+
+%div
+
+  = form_with(model:@apple, locale: true , id: 'new_item') do |f|
+    %div
+      %h1
+        商品の情報を入力
+    .item-image-container
+      = f.label :"出品画像"
+      %span.form-require 必須
+      %p.item-image-container__lead
+        最大5枚までアップロードできます
+      .item-image-container__unit
+        -# = f.fields_for :item_images do |i|
+        -#   %ul
+
+        -#   .item-image-container__unit--guide
+        -#     %label(for="image-label")
+        -#     .user-icon-dnd-wrapper{style:"position:relative;width:100%;height:150px;"}
+        -#       = i.file_field :image, multiple: true, class: 'image-upload-dropfile-hidden', id:"image-label",type: 'file', name: "item_images[image][]"
+        -#       #preview_field{style:"position:absolute;top:0;"}
+        -#       #drop_area{style:"position:absolute;top:0;width:100%;height:100%;text-align:center;border:2px solid pink;"}
+        -#         drag and drop
+        -#         %br
+        -#         or
+        -#         %br
+        -#         click here.
+        -#       #icon_clear_button{style:"position:absolute;top:0;"} X
+
+        -#       %div.image-upload-dropfile-entire
+        -#       .have-image
+        -#         = icon('fas','camera')
+        -#         %p#d-d-delete ドラッグ&ドロップ
+        -#         %p#click-delete またはクリックしてファイルをアップロード
+      %div.item__contents--image-upload-container
+        %label.label-name{:for => "icon"} icon
+        .item__contents--image-upload-container--wrap
+          = f.file_field :image, multiple: true,id: "input_file"
+          #preview_field
+          #drop_area
+            %p
+              = icon('fas','camera')
+            %p クリックしてファイルをアップロード
+          #icon_clear_button{style:"position:absolute;top:0;"} X
+
+      %div.item__contents--description-container
+        %div
+          %h2 
+            = f.label :name do
+              商品名
+              %span.required 必須
+          = f.text_field :name , placeholder: "商品名（必須 40文字まで)",class: "item__contents--description-container__name"
+          %h2
+            = f.label :description do
+              商品の説明
+              %span.required 必須
+          = f.text_area :description , placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+      %div.item__contents--details-container
+        %div
+          %h3
+            商品の詳細
+        %div
+          %div
+            %h2 
+              = f.label :category do 
+                カテゴリー
+                %span.required 必須
+            %div
+              -# = f.collection_select :category_id, @categories, :id, :name, class: "user_class", prompt: true
+          %div
+            %h2 
+              = f.label :condition do 
+                商品の状態
+                %span.required 必須
+            %div
+              -# = f.select :condition, Item.conditions.keys.map{|k| [I18n.t("enum.item.condition.#{k}"), k]}, prompt: true
+      %div.item__contents--price-container
+        %div
+          %h3
+            販売価格(300〜9,999,999)
+            =link_to "?","",class:"question",target:"_blank"
+        %div
+          %div
+            %ul
+              %li
+                %div
+                  = f.label :price do 
+                    価格
+                    %span.required 必須
+                %div
+                  .item__contents--price-container__yen-mark ¥
+                  = f.text_field :price , placeholder: "例) 300", id: "price"
+              %li
+                %div 販売手数料 (10%)
+                %p#commission -
+              %li
+                %div 販売利益
+                %p#sales -
+      %div
+        %p
+          #{link_to "禁止されている出品","#"}、#{link_to "行為","#"}を必ずご確認ください。
+        %p
+          またブランド品でシリアルナンバー等がある場合はご記載ください。#{link_to "偽ブランドの販売","#"}は犯罪であり処罰される可能性があります。
+        %p
+          また、出品をもちまして#{link_to "加盟店規約","#"}に同意したことになります。
+        = f.hidden_field :size,value: 0
+        = f.hidden_field :status,value: 0
+        = f.submit "出品する"
+        = link_to "もどる", root_path
+
+
+
+:javascript
+
+:css
+  .item-image-container__unit,#drop_area{
+    display :flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 10;
+    width: 110px;
+    background-color: #eee;
+    border: dashed 1px #ccc;
+    margin: 0 auto;
+    height: 160px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 0.85em;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.6em;
+    
+  }
+
+  input[type=file] {
+    -# display:none;
+  }
+

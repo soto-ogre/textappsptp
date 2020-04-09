@@ -1,0 +1,13 @@
+%h1 Note#index
+%ul
+  %li
+    = link_to "New Post", new_notes_path
+  %li
+    = link_to "Create an account", new_user_registration_path
+  %li
+    = link_to "Log in", new_user_session_path
+  %li
+    = link_to "Log out", destroy_user_session_path, method: "DELETE"
+
+
+%p Find me in app/views/note/index.html.haml

@@ -1,0 +1,27 @@
+%h1 Listing apples
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Images
+      %th Text
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @apples.each do |apple|
+      %tr
+        %td= apple.title
+        %td= apple.images
+        %td= apple.text
+        %td= apple.user_id
+        %td= link_to 'Show', apple
+        %td= link_to 'Edit', edit_apple_path(apple)
+        %td= link_to 'Destroy', apple, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Apple', new_apple_path

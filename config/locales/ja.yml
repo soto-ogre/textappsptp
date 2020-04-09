@@ -1,0 +1,8 @@
+ja:
+  enums:
+    note:
+      category:
+        markdown: "マークダウン"
+        chordpro: "コードプロ"
+        task: "タスク"
+  hello: "こんにちは"

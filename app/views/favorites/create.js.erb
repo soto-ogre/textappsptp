@@ -1,0 +1,4 @@
+$(function(){
+  $("#favorite-<%= @memo.id %>").html("<%= j(render partial: 'memos/favorite', locals: { memo: @memo }) %>");
+console.log(this)
+});

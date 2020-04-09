@@ -1,0 +1,52 @@
+= form_for @apple do |f|
+  - if @apple.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@apple.errors.count, "error")} prohibited this apple from being saved:"
+      %ul
+        - @apple.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :pictures
+    = f.file_field :pictures, multiple: true
+  .field
+    = f.label :discription
+    = f.text_area :discription
+    = f.hidden_field :size,value: 0
+    = f.hidden_field :status,value: 0
+  = f.fields_for :delivery do |d|
+    %div
+      %h5
+        配送料の負担
+        %span.required 必須
+      %div
+        = d.text_field :postage_bearer
+    %div.seller
+      %h5
+        配送の方法
+        %span.required 必須
+      %div
+        = d.text_field :delivery_method
+    %div
+      %h5 
+        発送元の地域
+      = d.text_field :delivery_area
+    %div
+      %h5
+        発送までの日数
+      = d.text_field :delivery_day
+      = d.hidden_field :postage,value: 0
+      = d.hidden_field :delivery_status,value: "delivery_status"
+
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :condition
+    = f.text_field :condition
+
+  .actions
+    = f.submit 'Save'

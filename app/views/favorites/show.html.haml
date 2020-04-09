@@ -1,0 +1,20 @@
+%h1.ui.header.dividing
+  Book Mark
+.ui.stackable.four.column.grid
+  - @favorite.each do |fav|
+    .column
+      .ui.card
+        .content
+          .header
+            =  fav.memo.title
+          .meta
+            =  fav.memo.created_at
+          .description
+            .post__title.notselected
+              = link_to fav.memo,id: "post-link" do
+                
+                = truncate(fav.memo.content, length: 180)
+            .extra.content
+              -if fav.memo.label_list.length > 0
+                - fav.memo.label_list.each do |tag| 
+                  = link_to tag, tags_path(tag_name: tag),class:"ui label blue"

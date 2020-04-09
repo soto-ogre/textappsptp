@@ -1,0 +1,46 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @apple.name
+%p
+  %b Images:
+  <BR>
+  
+  - for num in 0..10 do
+    - img_url = @apple.pictures[num].to_s
+    -unless img_url.empty?
+      = image_tag img_url, size:"200x200"
+      = + "　"
+    
+%p
+  %b discription:
+  = @apple.discription
+%p
+  %b conditon:
+  = @apple.condition
+%p
+  %b price:
+  = @apple.price
+%p
+  %b seller:
+  = @apple.seller_id
+%p
+  %b buyer:
+  = @apple.buyer_id
+%p
+  %b delivery_method:
+  = @delivery.delivery_method
+%p
+  %b delivery_day:
+  = @delivery.delivery_day
+%p
+  %b postage_bearer:
+  = @delivery.postage_bearer
+%p
+  %b delivery_area:
+  = @delivery.delivery_area
+
+= link_to 'Edit', edit_apple_path(@apple)
+\|
+= link_to 'Back', apples_path

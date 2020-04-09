@@ -1,0 +1,76 @@
+.mainmenu
+  .menu-title
+    MENU
+  %ul.nav
+    - if user_signed_in?
+      %li.header
+        Listening notes
+      %li.nav__new-post
+        = link_to new_memo_path do
+          %i.far.fa-edit
+          New Post
+      %li.nav__top
+        = link_to root_path,{data:{content:"Home"},class:"ui icon button"} do
+          %i.fas.fa-home
+      %li.nav__top
+        = link_to favorites_path,{data:{content:"Favorite"},class:"ui icon button"} do
+          %i.far.fa-bookmark
+      %li
+        %button.ui.icon.button{data:{content:"Search"}}
+          %i.fas.fa-search.search-button
+      %li.search-field{style:"display: none;"}
+        = form_tag(search_path,method: 'get') do
+          .ui.search
+            .ui.icon.input
+              = text_field_tag :search,'',{class: 'prompt',placeholder:"Search notes..."}
+              = button_tag type: :submit do
+                %i.fas.fa-search.search-icon
+
+    - else
+      %li
+        = link_to new_user_session_path do
+          %i.fas.fa-sign-in-alt
+          Log-in
+  .nav__container
+    %ul.nav
+
+      - if current_user.id
+        %li
+          .ui.accordion
+            .title
+              %i.fas.fa-angle-right.dropdown
+              Markdown
+              .ui.label
+                = markdown_id.length
+            .content
+              - markdown_id.each do |memo|
+                .post__title.notselected
+                  = link_to memo,id: "post-link" do
+                    =  memo.title
+            .title
+              %i.fas.fa-angle-right.dropdown
+              Chord pro
+              .ui.label
+                = chordpro_id.length
+            .content
+              - chordpro_id.each do |memo|
+                .post__title.notselected
+                  = link_to memo,id: "post-link" do
+                    =  memo.title
+        -# %li.tag
+        -#   - nav_tags.tag_counts_on(:labels).each do |tag| 
+        -#     = link_to "#{tag.name}(#{tag.count})", tags_path(tag_name: tag.name),class:"ui label blue"
+
+        %li.nav__top
+          = link_to destroy_user_session_path,{data:{content:"Log-out"},class:"ui icon button",method: "DELETE"}  do
+            %i.fas.fa-sign-out-alt
+
+:javascript
+  $('.ui.accordion').accordion();
+  $('.ui.search').search({ source: content });
+:javascript
+  $(function () {
+    $('button').click(function () {
+        $('.search-field').slideToggle();
+    });
+  });

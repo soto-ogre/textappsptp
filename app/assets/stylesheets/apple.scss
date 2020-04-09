@@ -1,0 +1,307 @@
+// $gray :rgb(244, 244, 244); //背景色、検索窓の薄いグレー
+// $deepgray :rgb(185, 185, 185); //それ以外の少し濃いグレー。フッターのリンク色などに使用しています。
+// $lightblack :rgb(132, 132, 132);
+// $red :rgb(203, 56, 56); //赤全般
+// $blue : rgb(74, 147, 225);//青全般
+// $white:#FFFFFF;//白全般
+// $black :rgb(45, 45, 45);//黒全般
+// $shadow-color :rgba(0, 0, 0, 0.167);//shadow-boxタグに使用している色です。透明度を設定しています。
+// $fontawesome :"Font Awesome 5 Free";//fontawesome用のフォント指定です。仕様が変わって指定フォント名が変更される可能性を考慮して変数にしています。
+// $gray-hover :rgba(0, 0, 0, 0.020);
+// $black-hover :rgba(0, 0, 0, 0.50);
+// $yellow: rgb(253, 235, 154);
+
+
+// @mixin flex {
+//   display: flex;
+//     justify-content:space-between;
+//     flex-wrap: wrap;
+// }
+
+// @mixin submit-red-bar {
+//   border: none;
+//   width: 100%;
+//   height: 50px;
+//   padding: 10px;
+//   margin: 15px 0 30px 0;
+//   color: $white;
+//   font-size: 0.9em;
+//   background-color: $red;
+//   cursor: pointer;
+//   &:focus {
+//     outline: none;
+//   }
+// }
+
+// @mixin input-form {
+//     padding: 15px;
+//     height: 50px;
+//     line-height: 50px;
+//     border-radius: 5px;
+//     border-style: none;
+//     font-size: 1em;
+//     border: 1px solid $deepgray;
+//     &:focus {
+//       outline: none;
+//       border: 1px solid $blue;
+//     }
+// }
+
+// @mixin textarea {
+//     width: 100%;
+//     padding: 10px;
+//     font-size: 1em;
+//     line-height: 1.5em;
+//     border: 1px solid $deepgray;
+//     &:focus {
+//       outline: none;
+//       border: 1px solid $blue;
+//     }
+// }
+
+// @mixin select {
+//     position: absolute;
+//     right: 15px;
+//     top: 0;
+//     line-height: 53px;
+//     pointer-events: none;
+//     font-family: $fontawesome;
+//     font-weight: 900;
+//     color: $lightblack;
+//     content:"\f078";
+// }
+
+// @mixin item-sell-flex {
+//   > div:first-child {
+//     flex: 1;
+//   }
+//   > div:last-child {
+//     flex: 2;
+//   }
+// }
+
+
+// .item {
+//   &__contents {
+//     padding: 0 50px 0px 50px;
+//     width: 100%;
+//     height: 100%;
+
+//         a:hover{
+//         opacity: 0.5;
+//         }
+
+//         > div {
+//         width: 700px;
+//         margin: 0 auto;
+//         padding: 0;
+
+//               h1 {
+//               text-align: center;
+//               font-size: 1.4em;
+//               }
+        
+//             > form > div {
+//               background-color: $white;
+//               padding: 40px;
+//               border-bottom: 1px solid $gray;
+
+//               a {
+//                 color: $blue;
+//                 &:hover {
+//                   border-bottom: 1px solid;
+//                 }
+//               }
+
+//               &:last-child {
+//                 font-size: 0.85em;
+//                 line-height: 1.6em;
+//               }
+
+              
+
+
+//             }
+
+//           h2 {
+//             font-size: 0.9em;
+//             line-height: 1.5em;
+//             margin-bottom: 5px;
+//             + p{
+//               font-size: 0.8em;
+//               margin: 10px 0 20px 0;
+//             }
+//             + input[type=text] {
+//               width: 100%;
+//             }
+//           }
+
+//           h3 {
+//             color: $lightblack;
+//             font-size: 0.8em;
+//             .question {
+//               display: inline-block;
+//               background-color: $blue;
+//               color: $white;
+//               width: 14px;
+//               height: 14px;
+//               padding: 2px 4px;
+//               border-radius: 100%;
+//               font-size: 0.5rem;
+//               font-weight: normal;
+//               &:hover {
+//                 border: none;
+//               }
+//             }
+//           }
+
+//         }
+
+//         &--image-upload-container {
+//           background-color: lightcoral;
+
+//           .item-image-container__unit {
+//               @include flex;
+//               justify-content: center;
+//               align-items: center;
+//               flex-grow: 1;
+//               flex-shrink: 10;
+//               width: 110px;
+//               background-color: $gray;
+//               border: dashed 1px $deepgray;
+//               margin: 0 auto;
+//               height: 160px;
+//               padding: 10px;
+//               font-weight: bold;
+//               font-size: 0.85em;
+//               text-align: center;
+//               cursor: pointer;
+//               line-height: 1.6em;
+//               width: 100%;
+//               }
+//             &--wrap {
+//               position:relative;
+//               width:100%;
+//               height:150px;
+
+//               > #preview_field {
+//                 position:absolute;top:0;
+//               }
+
+//               > #drop_area {
+//                 position:absolute;
+//                 top:0;
+//                 width:100%;
+//                 height:100%;
+//               }
+//             } 
+//         }
+
+//         &--description-container {
+//           background-color: red;
+//           width: 100%;
+//           &__name {
+//             width: 100%;
+//           }
+
+//         }
+
+//         &--details-container {
+//           background-color: blue;
+//           display: flex;
+//           @include item-sell-flex;
+          
+//         }
+
+//         &--regarding-delivery-container {
+//           background-color: green;
+//           display: flex;
+//           @include item-sell-flex;
+//         }
+
+//         &--price-container {
+//           background-color: yellow;
+//           display: flex;
+//           @include item-sell-flex;
+//           &__yen-mark {
+//             position: relative;
+//             top: 15px;
+//             padding-right: 10px;
+//           }
+//           > div:last-child {
+//             ul > li > div:last-child {
+//               display: flex;
+//             }
+//           }
+//           li{
+//             @include flex;
+//             color:$black;
+//             list-style: none;
+//             padding: 10px 0;
+//             }
+//             font-size: 1em;
+//             font-weight: bold;
+//             > #sales {
+//               font-size: 1.5em;
+//               }
+//         }
+
+
+
+//         select {
+//             -webkit-appearance: none;
+//             -moz-appearance:none;
+//             appearance: none;
+//             outline:none;
+//             color: inherit;
+//             height: 50px;
+//             padding: 8px 12px;
+//             width:100%;
+//             border-color: $deepgray;
+//             background-color: inherit;
+//             background: none transparent;
+//             font-size: 1em;
+//             margin-bottom: 40px;
+//             &:focus {
+//               outline: none;
+//             }
+//             &:hover {
+//               border: 1px solid $blue;
+//             }
+
+//             > option{
+//               background-color: #fff;
+//               color: $black;
+//             }
+//         }
+
+//         input[type=text], input[type=number] {
+//           @include input-form;
+//           margin-bottom: 40px;
+//           font-weight: bold;
+          
+//         }
+
+//         textarea {
+//           @include textarea;
+//           height:10em;
+//         }
+
+//         input[type=submit] {
+//           @include submit-red-bar;
+//           margin-top: 50px;
+//           opacity: 0.93;
+//           transition: 0.5s;
+//           &:hover {
+//             opacity: 1;
+//           }
+//         }
+
+//         .field_with_errors {
+//           > input[type=text],select,textarea {
+//             border: 1px solid $red;
+//           }
+          
+//         }
+//   }
+// }

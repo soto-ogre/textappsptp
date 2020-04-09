@@ -1,0 +1,36 @@
+%h1 Note#new
+= form_for @note do |f|
+  %fieldset.uk-fieldset
+    .form
+      = f.label :title, "title"
+      = f.text_field :title
+    .form
+      = f.label :category
+      = f.select :category, Note.categories_i18n.invert, {}, class: 'form-control', placeholder: 0
+    .form
+      = f.label :body, "text"
+      = f.text_area :body
+    .form
+      = f.submit "Send"
+
+
+  -# .uk-margin
+  -#   %textarea.uk-textarea{rows: "5", placeholder: "Textarea"}
+  -# .uk-margin.uk-grid-small.uk-child-width-auto.uk-grid
+  -#   %label
+  -#     %input{ class: "uk-radio", type: "radio", name: "radio2", checked }
+  -#     A
+  -#   %label
+  -#     %input{ class: "uk-radio", type: "radio", name: "radio2", checked }
+  -#     A
+
+  -# .uk-margin.uk-grid-small.uk-child-width-auto.uk-grid
+  -#   %label
+  -#     %input{class: "uk-checkbox",type: "checkbox", checked}
+  -#       A
+  -#   %label
+  -#     %input{class: "uk-checkbox",type: "checkbox", checked}
+  -#       B
+
+  -# .uk-margin
+  -#   %input{class: "uk-range", type: "range", value: "2", min: "0", max: "10", step: "0.1"}

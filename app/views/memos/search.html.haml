@@ -1,0 +1,25 @@
+
+%h1.ui.header.dividing
+  Search
+%h3.ui.header
+  .content
+    = sanitize count
+.ui.stackable.four.column.grid
+  - @memos.each do |memo|
+    .column
+      .ui.card
+        .content
+          .header
+            =  memo.title
+          .meta
+            =  memo.created_at
+          .description
+            .post__title.notselected
+              = link_to memo,id: "post-link" do
+                
+                = truncate(memo.content, length: 180)
+            .extra.content
+              -if memo.label_list.length > 0
+                - memo.label_list.each do |tag| 
+                  = link_to tag, tags_path(tag_name: tag),class:"ui label blue"
+
