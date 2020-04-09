@@ -11,6 +11,7 @@ class NotesController < ApplicationController
     if @note.
     @note.save
     redirect_to new_user_path
+    end
   end
 
   def show
