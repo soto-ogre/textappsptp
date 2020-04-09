@@ -44,7 +44,7 @@ $(function () {
         fr.onload = function(e) {
           var src = e.target.result;
           var img = '<img src="'+ src +'" width="150px">';
-          var html =  `<li class="item-image-container__unit--preview" >
+          var html =  `<li class="item-image-container__unit--preview">
                         <div class="item-image-container__unit--caption">
                           ${img}
                         </div>
