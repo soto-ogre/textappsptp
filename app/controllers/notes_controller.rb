@@ -8,7 +8,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    if @note.
+    if @note
     @note.save
     redirect_to new_user_path
     end
