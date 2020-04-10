@@ -56,12 +56,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_054102) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "file_name"
     t.datetime "created_at", null: false
@@ -107,7 +101,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_054102) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -115,9 +108,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_054102) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.string "images"
-    t.index ["user_id"], name: "user"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
