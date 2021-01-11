@@ -71,7 +71,7 @@ gem "font-awesome-sass"
 gem 'devise'
 gem 'rails-i18n'
 gem 'enum_help' 
-gem 'redcarpet', '~> 2.3.0'
+gem 'redcarpet', '~> 3.5.1'
 gem 'coderay'
 gem 'chordpro'
 gem 'marked-rails'
